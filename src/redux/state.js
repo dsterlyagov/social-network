@@ -1,14 +1,14 @@
 let store = {
     _state: {
         profilePage: {
-            messagesData : [
-                {id:1, message: 'Hi'},
-                {id:2, message: 'How are you?'},
-                {id:3, message: 'Yo'},
-                {id:4, message: 'Hi'},
+            messagesData: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Hi'},
 
             ],
-            dialogsData : [
+            dialogsData: [
                 {id: 1, name: 'Demetrius'},
                 {id: 2, name: 'Andrey'},
                 {id: 3, name: 'Sveta'},
@@ -28,41 +28,36 @@ let store = {
 
 
     },
-    getState(){
+    _callSubscriber() {
+        console.log('State changed')
+    },
+
+    getState() {
 
         return this._state
     },
-   _callSubscriber  () {
-        console.log('State changed')
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
-    addPost  (){
-        debugger;
-        let newPost = {
-            id: this._state.messagesPage.postsData.length,
-            message: this._state.messagesPage.newPostText,
-            likesCount: 0,
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: this._state.messagesPage.postsData.length,
+                message: this._state.messagesPage.newPostText,
+                likesCount: 0,
+            }
+            this._state.messagesPage.postsData.push(newPost);
+            this._state.messagesPage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.messagesPage.newPostText = action.newText;
+            this._callSubscriber(this._state);
         }
-        this._state.messagesPage.postsData.push(newPost);
-        this._state.messagesPage.newPostText = '';
-        this._callSubscriber(this._state);
     },
-    updateNewPostText  (newText)  {
-        this._state.messagesPage.newPostText = newText
-        this._callSubscriber(this._state);
-    },
-    subscribe (observer){
-        this._callSubscriber= observer;
-    }
+
+
 }
-
-
-
-
-
-
-
-
-
 
 
 export default store;
