@@ -1,21 +1,38 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const messagesReducer = (state, action) =>{
+let initialState = {
+    dialogsData: [
+        {id: 1, name: 'Demetrius'},
+        {id: 2, name: 'Andrey'},
+        {id: 3, name: 'Sveta'},
+        {id: 4, name: 'Sasha'},
+        {id: 5, name: 'Viktor'},
+        {id: 6, name: 'Valera'},
+    ],
+    messagesData: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Yo'},
+        {id: 4, message: 'Hi'},
+
+    ],
+    newMessageBody: "",
+}
+const messagesReducer = (state=initialState, action) =>{
     switch (action.type) {
         case ADD_POST:
-            let newPost = {
-                id: 5,
-                message: state.newPostText,
-                likesCount: 0,
-            }
-            state.postsData.push(newPost);
-
-            state.newPostText = '';
+            console.log('77')
+            console.log(state)
+            let body =  state.newMessageBody;
+            state.newMessageBody= '';
+            state.messagesData.push({id:6, message: body});
             return state;
 
         case UPDATE_NEW_POST_TEXT:
-             state.newPostText = action.newText;
+            console.log('88');
+            console.log(action)
+            state.newMessageBody = action.newText;
             return state;
 
         default:

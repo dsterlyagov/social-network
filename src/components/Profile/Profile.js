@@ -6,15 +6,16 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
+
     console.log('Profile');
     console.log(props);
     return <div className={classes.content}>
 
         <ProfileInfo/>
         <MyPosts
-            postsData={props.stateProfilePage.postsData}
-            newPostText={props.stateProfilePage.newPostText}
-            dispatch={props.dispatch}
+             postsData={props.stateProfilePage.postsData}
+             newPostText={props.stateProfilePage.newPostText}
+             dispatch={props.dispatch}
         />
     </div>
 }

@@ -1,11 +1,13 @@
 import React from "react";
 import Post from "./Post/Post";
 import classes from './MyPosts.module.css';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/messages-reducer";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../redux/profile-reducer";
 
 
 const MyPosts = (props) => {
-
+    console.log('111')
+console.log(props)
+   // debugger;
     let postMessages = props.postsData
         .map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
@@ -13,14 +15,15 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-        props.dispatch(addPostActionCreator())
+        props.dispatch(sendMessageCreator())
 
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
         //props.updateNewPostText(text);
-        props.dispatch(updateNewPostTextActionCreator(text))
+        console.log(text)
+        props.dispatch(updateNewMessageBodyCreator(text))
     }
 
     return <div className={classes.postsBlock}>

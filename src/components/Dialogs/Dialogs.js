@@ -2,11 +2,12 @@ import React from "react";
 import classes from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/profile-reducer";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/messages-reducer";
 
 const Dialogs= (props) =>{
 
-    let state = props.store.getState().profilePage;
+    let state = props.store.getState().messagesPage;
+
     let dialogsElements = state.dialogsData
         .map(dialog =><DialogItem name={dialog.name} id={dialog.id}/>);
     let messageElements = state.messagesData
@@ -15,12 +16,13 @@ const Dialogs= (props) =>{
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () =>{
-        props.store.dispatch(sendMessageCreator());
+        props.store.dispatch(addPostActionCreator());
 
     }
     let onNewMessageChange = (e) =>{
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body));
+
+        props.store.dispatch(updateNewPostTextActionCreator(body));
     }
     return <div className={classes.dialogs}>
         <div className={classes.dialogsItems}>
