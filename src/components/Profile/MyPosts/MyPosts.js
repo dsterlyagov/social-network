@@ -8,7 +8,7 @@ const MyPosts = (props) => {
     console.log('111')
 console.log(props)
    // debugger;
-    let postMessages = props.postsData
+    let postMessages = props.posts
         .map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
     let newPostElement = React.createRef();
@@ -21,7 +21,7 @@ console.log(props)
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        //props.updateNewPostText(text);
+
         console.log(text)
         props.dispatch(updateNewMessageBodyCreator(text))
     }

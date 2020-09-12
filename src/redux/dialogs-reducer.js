@@ -2,7 +2,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 let initialState = {
-    dialogsData: [
+    dialogs: [
         {id: 1, name: 'Demetrius'},
         {id: 2, name: 'Andrey'},
         {id: 3, name: 'Sveta'},
@@ -10,7 +10,7 @@ let initialState = {
         {id: 5, name: 'Viktor'},
         {id: 6, name: 'Valera'},
     ],
-    messagesData: [
+    messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How are you?'},
         {id: 3, message: 'Yo'},
@@ -19,14 +19,14 @@ let initialState = {
     ],
     newMessageBody: "",
 }
-const messagesReducer = (state=initialState, action) =>{
+const dialogsReducer = (state=initialState, action) =>{
     switch (action.type) {
         case ADD_POST:
             console.log('77')
             console.log(state)
             let body =  state.newMessageBody;
             state.newMessageBody= '';
-            state.messagesData.push({id:6, message: body});
+            state.messages.push({id:6, message: body});
             return state;
 
         case UPDATE_NEW_POST_TEXT:
@@ -48,4 +48,4 @@ export const addPostActionCreator = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreator = (text) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text });
-export default messagesReducer;
+export default dialogsReducer;

@@ -7,7 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import {addPost, updateNewPostText} from "./redux/store";
 
  let rerenderEntireTree = (state) =>{
-     //debugger;
+     console.log('state')
+     console.log(state);
+     console.log('store');
+     console.log(store);
     ReactDOM.render(
         <React.StrictMode>
             <App state={state}

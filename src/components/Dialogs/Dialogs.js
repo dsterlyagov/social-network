@@ -2,15 +2,15 @@ import React from "react";
 import classes from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/messages-reducer";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs= (props) =>{
 
     let state = props.store.getState().messagesPage;
 
-    let dialogsElements = state.dialogsData
+    let dialogsElements = state.dialogs
         .map(dialog =><DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElements = state.messagesData
+    let messageElements = state.messages
         .map(message =><Message message={message.message} />);
 
     let newMessageBody = state.newMessageBody;

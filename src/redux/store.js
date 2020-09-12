@@ -1,5 +1,5 @@
 import profileReducer from "./profile-reducer";
-import messagesReducer from "./messages-reducer";
+import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
 
@@ -7,7 +7,7 @@ let store = {
     _state: {
         profilePage: {
 
-            dialogsData: [
+            dialogs: [
                 {id: 1, name: 'Demetrius'},
                 {id: 2, name: 'Andrey'},
                 {id: 3, name: 'Sveta'},
@@ -15,7 +15,7 @@ let store = {
                 {id: 5, name: 'Viktor'},
                 {id: 6, name: 'Valera'},
             ],
-            messagesData: [
+            messages: [
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'How are you?'},
                 {id: 3, message: 'Yo'},
@@ -25,7 +25,7 @@ let store = {
             newMessageBody: "",
         },
         messagesPage: {
-            postsData: [
+            posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, message: 'It is, my first post?', likesCount: 23},
             ],
@@ -50,7 +50,7 @@ let store = {
 
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
         this._callSubscriber(this._state);
         }
