@@ -5,24 +5,26 @@ import DialogItem from "./DialogItem/DialogItem";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs= (props) =>{
+    //debugger;
+    let state = props.dialogsPage;
+console.log('Dialogs');
+console.log(state);
 
-    let state = props.store.getState().messagesPage;
 
     let dialogsElements = state.dialogs
         .map(dialog =><DialogItem name={dialog.name} id={dialog.id}/>);
     let messageElements = state.messages
         .map(message =><Message message={message.message} />);
-
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () =>{
-        props.store.dispatch(addPostActionCreator());
+        props.sendMessage();
 
     }
     let onNewMessageChange = (e) =>{
         let body = e.target.value;
+        props.updateNewMessageBody(body)
 
-        props.store.dispatch(updateNewPostTextActionCreator(body));
     }
     return <div className={classes.dialogs}>
         <div className={classes.dialogsItems}>

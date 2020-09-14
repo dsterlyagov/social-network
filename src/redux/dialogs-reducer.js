@@ -1,5 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let initialState = {
     dialogs: [
@@ -19,21 +19,20 @@ let initialState = {
     ],
     newMessageBody: "",
 }
-const dialogsReducer = (state=initialState, action) =>{
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            console.log('77')
-            console.log(state)
-            let body =  state.newMessageBody;
-            state.newMessageBody= '';
-            state.messages.push({id:6, message: body});
+
+        case UPDATE_NEW_MESSAGE_BODY:
+            state.newMessageBody = action.body;
             return state;
 
-        case UPDATE_NEW_POST_TEXT:
-            console.log('88');
-            console.log(action)
-            state.newMessageBody = action.newText;
+        case SEND_MESSAGE:
+
+            let body = state.newMessageBody;
+            state.newMessageBody = '';
+            state.messages.push({id: 6, message: body});
             return state;
+
 
         default:
             return state;
@@ -43,9 +42,13 @@ const dialogsReducer = (state=initialState, action) =>{
 
 
 }
-export const addPostActionCreator = () => ({type: ADD_POST});
+export const sendMessageCreator = () => ({type: SEND_MESSAGE});
 
-export const updateNewPostTextActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text });
+export const updateNewMessageBodyCreator = (body) => ({
+
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: body
+});
+
+
 export default dialogsReducer;
