@@ -20,17 +20,10 @@ console.log(props.store)
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    {/*<Route path='/profile' component={Profile}/>*/}
-                    <Route path='/dialogs' render={() =>
-                        <DialogsContainer
-                            store={props.store}/>}/>
-                    <Route path='/profile' render={() => <Profile
-                        // stateProfilePage={props.state.profilePage}
-                        // dispatch={props.dispatch}
-                        store={props.store}
-                    />}
-                    />
+                        <Route path='/dialogs' render={() =>
+                        <DialogsContainer   />}/>
+                    <Route path='/profile'
+                           render={() => <Profile />} />
 
                 </div>
 
