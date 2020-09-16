@@ -11,9 +11,9 @@ console.log(state);
 
 
     let dialogsElements = state.dialogs
-        .map(dialog =><DialogItem name={dialog.name} id={dialog.id}/>);
+        .map(dialog =><DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>);
     let messageElements = state.messages
-        .map(message =><Message message={message.message} />);
+        .map(message =><Message message={message.message} key={message.id}/>);
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () =>{
