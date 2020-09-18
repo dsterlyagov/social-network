@@ -4,11 +4,14 @@ import * as axios from "axios";
 import userPhoto from '../../assets/images/user.png'
 
 let Users = (props) => {
-    if(props.users.length ===0){
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-            .then(response=>{
+    let getUsers = () =>{
+        if(props.users.length ===0){
+            axios.get("https://social-network.samuraijs.com/api/1.0/users")
+                .then(response=>{
 
-                props.setUsers(response.data.items)})
+                    props.setUsers(response.data.items)})
+    }
+
         // props.setUsers([
         //     {id:1 , photoUrl: 'https://img.afisha.tut.by/static/media/340x0s/people/0f/b/dmitriy-nagiev-027054.jpg', followed: false, fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', country: 'Belarus'}},
         //     {id:2 , photoUrl: 'https://img.afisha.tut.by/static/media/340x0s/people/0f/b/dmitriy-nagiev-027054.jpg', followed: true, fullName: 'Sasha', status: 'I am a boss too', location: {city: 'Moscow', country: 'Russia'}},
@@ -18,6 +21,7 @@ let Users = (props) => {
     }
 
     return <div>
+        <button onClick={getUsers}>Get users</button>
         {
             props.users.map(u => <div key={u.id}>
                 <span>
